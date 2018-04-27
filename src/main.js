@@ -17,12 +17,16 @@ import {
   VCard,
   VTextField,
   VDatePicker,
-  VTimePicker
+  VTimePicker,
+  VAlert,
+  VProgressCircular,
+  VDialog
 } from 'vuetify';
 import router from './router';
 import { store } from './store';
 import DateFilter from './filters/date';
 import AlertCmp from './components/Shared/Alert.vue';
+import EditMeetupDetailsDialog from './components/Meetup/Edit/EditMeetupDetailsDialog.vue';
 
 import '../node_modules/vuetify/src/stylus/app.styl';
 
@@ -41,7 +45,10 @@ Vue.use(Vuetify, {
     VCard,
     VTextField,
     VDatePicker,
-    VTimePicker
+    VTimePicker,
+    VAlert,
+    VProgressCircular,
+    VDialog
   },
   theme: {
     primary: '#1565C0',
@@ -56,6 +63,7 @@ Vue.use(Vuetify, {
 
 Vue.filter('date', DateFilter);
 Vue.component('app-alert', AlertCmp);
+Vue.component('app-edit-meetup-details-dialog', EditMeetupDetailsDialog);
 
 Vue.config.productionTip = false;
 
@@ -72,6 +80,14 @@ new Vue({
       databaseURL: "https://devmeetup-ae563.firebaseio.com",
       projectId: "devmeetup-ae563",
       storageBucket: "devmeetup-ae563.appspot.com",
+    });
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.$store.dispatch('autoSignIn', user);
+      }
     })
+
+    this.$store.dispatch('loadMeetups');
   }
 });

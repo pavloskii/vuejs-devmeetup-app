@@ -9,7 +9,19 @@
       </v-flex>
     </v-layout>
 
-    <v-layout row wrap class="mt-2">
+    <v-layout>
+      <v-flex xs12 class="text-xs-center">
+        <v-progress-circular 
+          indeterminate 
+          :size="70"
+          :width="7"
+          v-if="loading" 
+          color="primary">
+        </v-progress-circular>
+      </v-flex>
+    </v-layout>
+
+    <v-layout row wrap class="mt-2" v-if="!loading">
       <v-flex xs12>
         <v-carousel>
           <!-- onclick da se vidi na carousel item -->
@@ -40,6 +52,9 @@ export default {
   computed: {
     meetups() {
       return this.$store.getters.featuredMeetups;
+    },
+    loading(){
+      return this.$store.getters.loading;
     }
   },
   methods: {
