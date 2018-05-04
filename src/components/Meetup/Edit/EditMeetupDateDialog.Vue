@@ -53,32 +53,3 @@
       </v-card>
   </v-dialog>
 </template>
-
-<script>
-export default {
-  props: ["meetup"],
-  data() {
-    return {
-      editDialog: false,
-      editedTitle: this.meetup.title,
-      editedDescription: this.meetup.description
-    };
-  },
-  methods: {
-    onSaveChanges() {
-      if (
-        this.editedTitle.trim() === "" ||
-        this.editedDescription.trim() === ""
-      ) {
-        return;
-      }
-      this.editDialog = false;
-      this.$store.dispatch("updateMeetupData", {
-        id: this.meetup.id,
-        title: this.editedTitle,
-        description: this.editedDescription
-      });
-    }
-  }
-};
-</script>

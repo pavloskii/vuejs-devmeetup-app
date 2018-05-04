@@ -20,7 +20,8 @@ import {
   VTimePicker,
   VAlert,
   VProgressCircular,
-  VDialog
+  VDialog,
+  VDivider
 } from 'vuetify';
 import router from './router';
 import { store } from './store';
@@ -48,7 +49,8 @@ Vue.use(Vuetify, {
     VTimePicker,
     VAlert,
     VProgressCircular,
-    VDialog
+    VDialog,
+    VDivider
   },
   theme: {
     primary: '#1565C0',
