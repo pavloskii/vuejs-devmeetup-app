@@ -107,7 +107,7 @@ export default {
       location: "",
       imageUrl: "",
       description: "",
-      date: "", // da se razgleda zosto nekje
+      date: new Date().toISOString().split('T')[0], // da se razgleda zosto nekje
       time: new Date(),
       image: null
     };
